@@ -30,6 +30,7 @@ public class Config extends com.wire.bots.sdk.Configuration {
     private boolean like = true;
     private long expiration;
     private String appSecret;
+    private String host;
 
     public String getDatabase() {
         return database;
@@ -70,4 +71,6 @@ public class Config extends com.wire.bots.sdk.Configuration {
     public String getAppSecret() {
         return appSecret;
     }
+
+    public String getHost() { return host; }
 }

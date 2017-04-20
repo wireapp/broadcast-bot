@@ -110,6 +110,22 @@ public class Executor {
         }
     }
 
+    public void broadcastUrl(final String url, final String botId) throws Exception {
+        WireClient wireClient = repo.getWireClient(botId);
+
+        final String title = extractPageTitle(url);
+        final Picture preview = uploadPreview(wireClient, extractPagePreview(url));
+
+        saveBroadcast(url, title, preview);
+
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                sendLink(url, title, preview, botId);
+            }
+        });
+    }
+
     public void broadcastText(final String messageId, final String text) throws SQLException {
         File[] botDirs = getCryptoDirs();
 
